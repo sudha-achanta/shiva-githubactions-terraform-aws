@@ -31,10 +31,9 @@ jobs:
           tf_actions_version:  0.13.5
           tf_actions_subcommand: 'init'
       env:
-          #GITHUB_TOKEN: ${{ secrets.TERRAFORM_TOKEN }}
           TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
           TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
-          TF_VAR_AWS_BUCKET_TF_STATE: "java-hello-world-2262023"
+          
     - name: 'Terraform Validate'
       uses: hashicorp/terraform-github-actions@master
       with:
