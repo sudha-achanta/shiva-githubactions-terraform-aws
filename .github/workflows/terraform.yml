@@ -28,23 +28,23 @@ jobs:
       uses: hashicorp/terraform-github-actions@master
       with:
           tf_actions_working_dir: .
-          tf_actions_version:  0.13
+          tf_actions_version:  0.135
           tf_actions_subcommand: 'init'
       env:
-          GITHUB_TOKEN: ${{ secrets.TERRAFORM_TOKEN }}
+          #GITHUB_TOKEN: ${{ secrets.TERRAFORM_TOKEN }}
           TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
           TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
     - name: 'Terraform Validate'
       uses: hashicorp/terraform-github-actions@master
       with:
           tf_actions_working_dir: .
-          tf_actions_version:  0.13
+          tf_actions_version:  0.135
           tf_actions_subcommand: 'validate'
     - name: 'Terraform Plan'
       uses: hashicorp/terraform-github-actions@master
       with:
           tf_actions_working_dir: .
-          tf_actions_version:  0.13
+          tf_actions_version:  0.135
           tf_actions_subcommand: 'plan'
       env:
           TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
@@ -53,7 +53,7 @@ jobs:
       uses: hashicorp/terraform-github-actions@master
       with:
           tf_actions_working_dir: .
-          tf_actions_version:  0.13
+          tf_actions_version:  0.135
           tf_actions_subcommand: 'apply'
       env:
           TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
