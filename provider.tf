@@ -1,10 +1,15 @@
 terraform {
-  backend "s3" {
-    bucket = "terraform-statefile-226"
-    key    = "sample/terraform/state/terraform.tfstate"
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
+backend "s3" {
     region = "us-west-2"
+    key    = "terraform.tfstate"
   }
 }
+
 provider "aws" {
   # Configuration options
   region     = "us-west-2"
@@ -12,28 +17,10 @@ provider "aws" {
   secret_key = var.AWS_SECRET_ACCESS_KEY
 }
 
-resource "aws_s3_bucket" "s3Bucket" {
-     bucket = "tf_state_02262023"
-     acl       = "public-read"
-
-     policy  = <<EOF
-{
-     "id" : "MakePublic",
-   "version" : "2012-10-17",
-   "statement" : [
-      {
-         "action" : [
-             "s3:GetObject"
-          ],
-         "effect" : "Allow",
-         "resource" : "arn:aws:s3:::[BUCKET_NAME_HERE]/*",
-         "principal" : "*"
-      }
-    ]
+resource "aws_instance" "test_instance" {
+  ami           = "ami-830c94e3"
+  instance_type = "t2.nano"
+  tags = {
+    Name = "test_instance"
   }
-EOF
-
-   website {
-       index_document = "index.html"
-   }
 }
