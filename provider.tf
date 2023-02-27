@@ -5,6 +5,8 @@ terraform {
     }
   }
 backend "s3" {
+    bucket = "java-hello-world-226"
+    #key    = ""
     region = "us-west-2"
     key    = "terraform.tfstate"
   }
