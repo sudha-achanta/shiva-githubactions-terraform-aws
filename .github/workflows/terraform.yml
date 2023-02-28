@@ -64,5 +64,5 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         # Artifact name
-        name: terraform.tfstate # optional, default is artifact
-        path: ./
+        #name: terraform.tfstate # optional, default is artifact
+        path: ./terraform.tfstate
