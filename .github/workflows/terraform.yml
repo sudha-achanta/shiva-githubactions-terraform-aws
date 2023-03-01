@@ -23,6 +23,16 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
+    
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v3.0.2
+      with:
+        # Artifact name
+        name: terraform.tfstate # optional
+        # Destination path
+        path: ./ # optional
+    - run: |
+          ls -ltr
       
     - name: 'Terraform Init'
       uses: hashicorp/terraform-github-actions@master
@@ -33,15 +43,7 @@ jobs:
       env:
           TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
           TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v3.0.2
-      with:
-        # Artifact name
-        #name: terraform.tfstate # optional
-        # Destination path
-        path: ./ # optional
-    - run: |
-          ls -ltr
+    
     - name: 'Terraform Validate'
       uses: hashicorp/terraform-github-actions@master
       with:
