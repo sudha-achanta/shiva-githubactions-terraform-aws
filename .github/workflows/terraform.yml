@@ -28,7 +28,7 @@ jobs:
       uses: actions/download-artifact@v3.0.2
       with:
         # Artifact name
-        name: terraform.tfstate # optional
+        name: artifact # optional
         # Destination path
         path: ./ # optional
     - run: |
